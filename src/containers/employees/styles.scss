@@ -1,0 +1,26 @@
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.actionItemsWrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 40px;
+}
+
+.textField {
+  width: 70%;
+  color: #00BCD4 !important;
+}
+
+.primaryButton {
+  color: #FFF !important;
+   background-color: #00BCD4 !important;
+}
