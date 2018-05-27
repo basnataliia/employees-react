@@ -23,6 +23,10 @@ const employees = [
   }
 ];
 
+const generateId = (employee) => {
+  return employee.fullName.toLowerCase() + '-' + employee.position.toLowerCase();
+};
+
 class EmployeesApi {
   static getAllEmployees() {
     return new Promise((resolve, reject) => {
@@ -31,6 +35,29 @@ class EmployeesApi {
       }, 1000);
     });
   }
+
+  static saveEmployee(employee) {
+      employee = Object.assign({}, employee);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            // Simulate server-side validation
+            const minEmployeeNameLength = 3;
+            if (employee.fullName.length < minEmployeeNameLength) {
+              reject(`Full Name must be at least ${minEmployeeNameLength} characters.`);
+            }
+
+            if (employee.id) {
+              const existingEmployeeIndex = employees.findIndex(a => a.id == employee.id);
+              employees.splice(existingEmployeeIndex, 1, employee);
+            } else {
+              employee.id = generateId(employee);
+              employees.push(employee);
+            }
+
+            resolve(employee);
+          }, 500);
+        });
+      }
 }
 
 export default EmployeesApi;

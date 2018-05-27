@@ -5,9 +5,9 @@ import styles from './styles.scss'
 const List = props =>
   (
     <div className={styles.root}>
-       {props.employees.map(employee => (
-         <ListItem employee={employee} />
-      ))}
+       {props.items.map(item =>
+         <ListItem item={item} />
+       )}
     </div>
   )
 

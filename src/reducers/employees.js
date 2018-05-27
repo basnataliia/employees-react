@@ -1,5 +1,9 @@
 import initialState from './initialState'
-import { GET_EMPLOYEES_SUCCESS } from '../actions/actionTypes'
+import {
+  GET_EMPLOYEES_SUCCESS,
+  SAVE_EMPLOYEE_SUCCESS,
+  UPDATE_EMPLOYEE_SUCCESS
+} from '../actions/actionTypes'
 
 const employeesInitialState = {
   items: [],
@@ -14,6 +18,21 @@ export default (state = employeesInitialState, action) => {
       return {
         ...state,
         items: action.items,
+        loaded: true
+      }
+    case SAVE_EMPLOYEE_SUCCESS:
+      return {
+        ...state,
+        items: state.items.concat(action.item),
+        loaded: true
+      }
+    case UPDATE_EMPLOYEE_SUCCESS:
+      return {
+        ...state,
+        items: state.items.map(item =>
+             item.id !== action.item.id
+               ? item
+               : action.item),
         loaded: true
       }
     default:

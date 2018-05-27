@@ -18,15 +18,7 @@ const request = (method, url, options={}) => {
       throw new Error(response.statusText)
     }
 
-    // const contentType = response.headers.get('content-type') || ''
-    // const isJSON = contentType.includes('application/json')
-    //
-    // if (isJSON) {
-    //   return response.json()
-    // }
     return response.json()
-    // return Promise.resolve()
-
   })
 }
 

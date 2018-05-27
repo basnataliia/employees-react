@@ -1,13 +1,14 @@
 import React from "react"
 import ReactDom from "react-dom"
 import {connect} from 'react-redux'
-import styles from "./styles.scss"
-import store from 'store/configureStore'
-import { getEmployees } from 'actions/employees'
+import {getEmployees} from 'actions/employees'
+import {withModal} from 'components/withModal/withModal'
+import EmployeeModal from 'containers/employees/modals/EmployeeModal'
 import Loader from 'components/Loader/Loader'
 import List from 'components/List/List'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import styles from "./styles.scss"
 
 class Employees extends React.Component {
     state = {
@@ -47,11 +48,15 @@ class Employees extends React.Component {
             margin="normal"
             onChange={this.onSearchSubmit}
           />
-          <Button variant="raised" color="primary" className={styles.primaryButton}>
+          <Button
+            variant="raised"
+            color="primary"
+            className={styles.primaryButton}
+            onClick={this.props.openModal}>
             Add new employee
           </Button>
          </div>
-         <List employees={queriedEmployees}/>
+         <List hasModal items={queriedEmployees}/>
         </div>
       )
     }
@@ -62,11 +67,14 @@ const mapStateToProps = (state) => {
   return {
     hasLoaded: state.employees.loaded,
     employees: state.employees.items ? state.employees.items : []
-  };
+  }
 }
 
 const mapDispatchToProps = {
   getEmployees
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Employees)
+const isNew = true;
+const WrappedComponent = withModal(Employees, EmployeeModal, isNew);
+
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedComponent)

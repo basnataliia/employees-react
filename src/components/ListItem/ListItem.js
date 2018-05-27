@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import EmployeeModal from 'containers/employees/modals/EmployeeModal'
+import {withModal} from 'components/withModal/withModal'
 import styles from './styles.scss'
 
 const ListItem = props =>
@@ -12,22 +14,22 @@ const ListItem = props =>
          <Card className={styles.card}>
            <CardMedia
              className={styles.media}
-             image={props.employee.profilePic}
-             title={props.employee.fullName}
+             image={props.item.profilePic}
+             title={props.item.fullName}
            />
            <CardContent>
              <Typography gutterBottom variant="headline" component="h2">
-               {props.employee.fullName}
+               {props.item.fullName}
              </Typography>
              <Typography component="p">
-               Job title: {props.employee.position}
+               Job title: {props.item.position}
              </Typography>
            </CardContent>
            <CardActions>
              <Button size="small" color="primary">
                Learn more
              </Button>
-             <Button size="small" color="primary">
+             <Button size="small" color="primary" onClick={props.openModal}>
                Edit
              </Button>
              <Button size="small" color="primary">
@@ -36,6 +38,7 @@ const ListItem = props =>
            </CardActions>
          </Card>
       )
+const isNew = false;
+const WrappedComponent = withModal(ListItem, EmployeeModal, isNew);
 
-
-export default ListItem
+export default WrappedComponent
