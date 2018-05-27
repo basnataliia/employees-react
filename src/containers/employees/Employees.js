@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDom from "react-dom"
 import {connect} from 'react-redux'
-import {getEmployees} from 'actions/employees'
+import {getEmployees, deleteEmployee} from 'actions/employees'
 import {withModal} from 'components/withModal/withModal'
 import EmployeeModal from 'containers/employees/modals/EmployeeModal'
 import Loader from 'components/Loader/Loader'
@@ -23,6 +23,13 @@ class Employees extends React.Component {
       this.setState({
         searchQuery: event.target.value
       })
+    }
+
+    handleDeleteEmployee = (id) => {
+      const confirmDelete = window.confirm("Are you sure you want to delete this employer?")
+      if(confirmDelete) {
+        this.props.deleteEmployee(id)
+      }
     }
 
     render() {
@@ -56,11 +63,14 @@ class Employees extends React.Component {
             Add new employee
           </Button>
          </div>
-         <List hasModal items={queriedEmployees}/>
+         <List
+           hasModal
+           items={queriedEmployees}
+           handleDeleteEmployee={this.handleDeleteEmployee}
+         />
         </div>
       )
     }
-
 }
 
 const mapStateToProps = (state) => {
@@ -71,7 +81,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getEmployees
+  getEmployees,
+  deleteEmployee
 }
 
 const isNew = true;

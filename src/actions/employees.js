@@ -41,3 +41,17 @@ export const saveEmployee = (employee) => (dispatch) =>
           .catch(error => {
             throw(error)
           })
+
+const deleteEmployeeSuccess = (id) => {
+  return ({
+    type: types.DELETE_EMPLOYEE_SUCCESS,
+    id
+  })
+}
+
+export const deleteEmployee = (employeeId) => (dispatch) =>
+  EmployeesApi.deleteEmployee(employeeId)
+          .then(() => dispatch(deleteEmployeeSuccess(employeeId)))
+          .catch(error => {
+            throw(error)
+          })

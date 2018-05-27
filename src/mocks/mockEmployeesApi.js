@@ -41,7 +41,7 @@ class EmployeesApi {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             // Simulate server-side validation
-            const minEmployeeNameLength = 3;
+            const minEmployeeNameLength = 1;
             if (employee.fullName.length < minEmployeeNameLength) {
               reject(`Full Name must be at least ${minEmployeeNameLength} characters.`);
             }
@@ -58,6 +58,18 @@ class EmployeesApi {
           }, 500);
         });
       }
+
+    static deleteEmployee(employeeId) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const indexOfEmployeeToDelete = employees.findIndex(employee => {
+            employee.id == employeeId;
+          });
+          employees.splice(indexOfEmployeeToDelete, 1);
+          resolve();
+        }, 300);
+      });
+    }
 }
 
 export default EmployeesApi;

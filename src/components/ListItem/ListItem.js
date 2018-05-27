@@ -32,7 +32,8 @@ const ListItem = props =>
              <Button size="small" color="primary" onClick={props.openModal}>
                Edit
              </Button>
-             <Button size="small" color="primary">
+             <Button size="small" color="primary"
+               onClick={() => props.handleDeleteEmployee(props.item.id)}>
                Delete
              </Button>
            </CardActions>

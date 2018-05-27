@@ -6,7 +6,7 @@ const List = props =>
   (
     <div className={styles.root}>
        {props.items.map(item =>
-         <ListItem item={item} />
+         <ListItem key={item.id} item={item} handleDeleteEmployee={props.handleDeleteEmployee}/>
        )}
     </div>
   )

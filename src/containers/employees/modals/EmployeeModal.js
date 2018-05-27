@@ -90,7 +90,6 @@ class EmployeeModal extends React.Component {
                 <img className={styles.profilePic} src={this.state.profilePic} alt="profile picture" />
                 <br/>
                 <input type="file" onChange={this.fileChangedHandler} />
-                <button onClick={this.uploadHandler}>Upload!</button>
 
           </DialogContent>
           <DialogActions>

@@ -2,7 +2,8 @@ import initialState from './initialState'
 import {
   GET_EMPLOYEES_SUCCESS,
   SAVE_EMPLOYEE_SUCCESS,
-  UPDATE_EMPLOYEE_SUCCESS
+  UPDATE_EMPLOYEE_SUCCESS,
+  DELETE_EMPLOYEE_SUCCESS
 } from '../actions/actionTypes'
 
 const employeesInitialState = {
@@ -33,6 +34,13 @@ export default (state = employeesInitialState, action) => {
              item.id !== action.item.id
                ? item
                : action.item),
+        loaded: true
+      }
+    case DELETE_EMPLOYEE_SUCCESS:
+      return {
+        ...state,
+        items: state.items.filter(item =>
+          item.id !== action.id),
         loaded: true
       }
     default:
