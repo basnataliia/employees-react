@@ -5,7 +5,7 @@ export const withModal = (WrappedComponent, CustomModal, isNew) => {
 
    class HOC extends React.Component {
     constructor(props) {
-     super(props);
+     super(props)
      this.state = {
        open: false
      }

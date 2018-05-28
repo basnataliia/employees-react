@@ -74,6 +74,7 @@ class Employees extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const employees = state.employees.items
   return {
     hasLoaded: state.employees.loaded,
     employees: state.employees.items ? state.employees.items : []

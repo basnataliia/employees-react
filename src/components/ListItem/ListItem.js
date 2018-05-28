@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -19,7 +20,7 @@ const ListItem = props =>
            />
            <CardContent>
              <Typography gutterBottom variant="headline" component="h2">
-               {props.item.fullName}
+                 {props.item.fullName}
              </Typography>
              <Typography component="p">
                Job title: {props.item.position}
@@ -27,7 +28,9 @@ const ListItem = props =>
            </CardContent>
            <CardActions>
              <Button size="small" color="primary">
+             <Link className={styles.link} to={`/employees/${props.item.id}`}>
                Learn more
+             </Link>
              </Button>
              <Button size="small" color="primary" onClick={props.openModal}>
                Edit

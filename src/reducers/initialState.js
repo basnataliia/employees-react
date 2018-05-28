@@ -1,5 +1,5 @@
 export default {
-  events: [],
   employees: [],
+  reviews: [],
   loaded: false
 }
