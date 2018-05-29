@@ -1,6 +1,7 @@
 import initialState from './initialState'
 import {
-  GET_REVIEWS_SUCCESS
+  GET_REVIEWS_SUCCESS,
+  SAVE_REVIEW_SUCCESS
 } from '../actions/actionTypes'
 
 const reviewsInitialState = {
@@ -16,6 +17,12 @@ export default (state = reviewsInitialState, action) => {
       return {
         ...state,
         items: action.items,
+        loaded: true
+      }
+    case SAVE_REVIEW_SUCCESS:
+      return {
+        ...state,
+        items: state.items.concat(action.item),
         loaded: true
       }
     default:

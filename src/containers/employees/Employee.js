@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import classNames from 'classnames'
 import {withRouter} from 'react-router-dom'
 import {getEmployees} from 'actions/employees'
-import {getReviews} from 'actions/reviews'
+import {getReviews, saveReview} from 'actions/reviews'
 import Divider from '@material-ui/core/Divider'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -12,19 +12,22 @@ import Avatar from '@material-ui/core/Avatar'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Loader from 'components/Loader/Loader'
-// import ReviewItem from './ReviewItem/ReviewItem'
 import ReviewsList from './ReviewsList/ReviewsList'
+import ReviewBlock from './ReviewBlock/ReviewBlock'
 import styles from "./styles.scss"
 
 class Employee extends React.Component {
-  
+
     componentDidMount() {
       this.props.getEmployees()
       this.props.getReviews()
     }
 
-    render() {
+    handleReviewSave = (data) => {
+      this.props.saveReview(data)
+    }
 
+    render() {
       if(!this.props.hasLoaded) {
         return <Loader></Loader>
       }
@@ -40,6 +43,7 @@ class Employee extends React.Component {
           <h2>Perfomance reviews</h2>
           <Divider  />
           <ReviewsList reviews={this.props.employeeReviews}/>
+          <ReviewBlock handleSave={this.handleReviewSave} employeeId={this.props.employee.id}/>
         </div>
       )
     }
@@ -62,7 +66,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   getEmployees,
-  getReviews
+  getReviews,
+  saveReview
 }
 
 

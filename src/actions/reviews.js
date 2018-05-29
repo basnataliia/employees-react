@@ -16,3 +16,21 @@ export const getReviews = () => (dispatch) =>
           .catch(error => {
             throw(error)
           })
+
+const saveReviewSuccess = (item) => {
+  return ({
+    type: types.SAVE_REVIEW_SUCCESS,
+    item
+  })
+}
+
+export const saveReview = (review) => (dispatch) =>
+  ReviewsApi.saveReview(review)
+         .then(result =>
+           review.id
+              ?  dispatch(updateReviewSuccess(result))
+              :  dispatch(saveReviewSuccess(result))
+         )
+         .catch(error => {
+           throw(error)
+         })

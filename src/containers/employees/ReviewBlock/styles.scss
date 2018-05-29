@@ -1,0 +1,14 @@
+.button {
+  color: #FFF !important;
+  display: block !important;
+  margin-top: 20px !important;
+}
+
+.textField {
+  display: block !important;
+  width: 400px !important;
+  margin-bottom: 20px;
+  > div {
+    width: 100% !important;
+  }
+}
